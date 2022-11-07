@@ -1,6 +1,7 @@
 import React from  'react';
-import './random-planet-block.css'
-import serviceApi from "../../../services-api";
+import './random-planet-block.css';
+import serviceApi from './services-api';
+import { Component } from 'react';
 
 class RandomPlanetBlock extends Component {
     services = new serviceApi()
@@ -33,7 +34,7 @@ class RandomPlanetBlock extends Component {
     }
 
     render() {
-const {name = '', population = '', diameter = '', ratation_period =''} = this.state
+const {name = '', population = '', diameter = '', rotation_period =''} = this.state
 
         return (
             <React.Fragment>
