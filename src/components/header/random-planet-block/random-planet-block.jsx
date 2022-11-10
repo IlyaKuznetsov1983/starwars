@@ -6,7 +6,8 @@ class RandomPlanetBlock extends Component {
     services = new ServicesApi()
 
     state = {
-        planet: {}
+        planet: {},
+        isLoading: null
     }
 
     constructor(props) {
@@ -29,7 +30,7 @@ class RandomPlanetBlock extends Component {
     }
 
     render() {
-    const {name , population , diameter , rotationPeriod, id} = this.state.planet
+    const {planet : {name , population , diameter , rotationPeriod, id}, isLoading } = this.state
 
         return (
             <React.Fragment>
