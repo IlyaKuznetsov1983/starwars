@@ -1,45 +1,41 @@
-import React from  'react';
+import React, {Component} from  'react';
 import './random-planet-block.css'
-import serviceApi from "../../../services-api";
+import ServicesApi from "../../../services-api";
 
 class RandomPlanetBlock extends Component {
-    services = new serviceApi()
+    services = new ServicesApi()
 
     state = {
-        name: '',
-        population: '',
-        diameter: '',
-        rotation_period : ''
-
+        planet: {}
     }
 
     constructor(props) {
         super(props);
         this.fetchPlanet()
+        setInterval(this.fetchPlanet, 5000)
     }
 
-    setPlanet =(planet) => {
+    setPlanet = (planet) => {
+        console.log(planet)
         this.setState({
             planet
         })
     }
 
     fetchPlanet = () => {
-        this.services.getPlanet(2)
-            .then(
-                this.setPlanet)
-
-
+        const id = Math.floor(Math.random()*17) +2
+        this.services.getPlanet(id)
+            .then(this.setPlanet)
     }
 
     render() {
-const {name = '', population = '', diameter = '', ratation_period =''} = this.state
+    const {name , population , diameter , rotationPeriod, id} = this.state.planet
 
         return (
             <React.Fragment>
                 <div className='picture-container'>
                     <img className="img-fluid img-thumbnail"
-                         src="https://widgetopia.io/widget/widget-planet" alt=""/>
+                         src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt=""/>
                 </div>
                 <h4>
                     {name}
@@ -51,7 +47,7 @@ const {name = '', population = '', diameter = '', ratation_period =''} = this.st
                     </li>
                     <li className='list-group-item'>
                         <span className='term'>Rotation Period:</span>
-                        <span>{rotation_period}</span>
+                        <span>{rotationPeriod}</span>
                     </li>
                     <li className='list-group-item'>
                         <span className='term'>Diameter:</span>
