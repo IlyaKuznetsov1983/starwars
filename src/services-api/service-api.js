@@ -1,9 +1,9 @@
 class ServicesApi {
-    _apiBasePath = 'http://swapi.dev/api'
+    _apiBasePath = 'http://swapi.dev/api/'
 
 
-    async getResource() {
-        const response = await fetch('https://swapi.dev/api/${url}')
+    async getResource(url) {
+        const response = await fetch(`${this._apiBasePath}${url}`)
 
         if (!response.ok) {
             throw new Error('No Connected: Status response ${response.status}')
@@ -18,7 +18,7 @@ class ServicesApi {
     }
 
     async getPlanet(id) {
-        const response = await this.getResource('/planets/${id}')
+        const response = await this.getResource(`/planets/${id}`)
         return this._transformPlanetData(response)
 
     }
@@ -52,7 +52,7 @@ class ServicesApi {
 
     _transformPlanetData(response) {
         return {
-            id: this._extractId(),
+            id: this._extractId(response.url),
             name: response.name,
             population: response.population,
             rotationPeriod: response.rotation_period,
