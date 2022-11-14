@@ -1,15 +1,27 @@
 import React, {Component} from 'react';
 
+
 class PeoplePage extends Component {
     render() {
         return (
-            <div className={'row mb2'}>
-                <div className={'col-md-6'}>
-                    Встроить список
-                </div>
-                <div className={'col-md-6'}>
-                       встроить детальную инфу чела
-                </div>
+            <div>h
+                <h4>
+                    Name
+                </h4>
+                <ul className='list-group list-group-flush detail'>
+                    <li className='list-group-item'>
+                        <span className='term'>Population:</span>
+                        <span>1111111111111</span>
+                    </li>
+                    <li className='list-group-item'>
+                        <span className='term'>Rotation Period:</span>
+                        <span>222222222222222</span>
+                    </li>
+                    <li className='list-group-item'>
+                        <span className='term'>Diameter:</span>
+                        <span>33333333333333</span>
+                    </li>
+                </ul>
             </div>
         );
     }

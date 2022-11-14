@@ -24,13 +24,12 @@ class ServicesApi {
     }
 
     async getAllPeoples() {
-        const response = await this.getResource('/peoples/')
-        return await response.results
+        const response = await this.getResource('/people/')
+        return await response.results.map(this._transformPersonData)
     }
 
     async getPeople(id) {
         const response = await this.getResource('/people/${id}')
-        console.log(response)
         return await response
     }
 
@@ -59,6 +58,16 @@ class ServicesApi {
             diameter: response.diameter
         }
     }
+    _transformPersonData = (person) => {
+        return {
+            id: this._extractId(person.url),
+            name: person.name,
+            birthYear: person.birth_year,
+            eyeColor: person.eye_color,
+            gender: person.gender
+        }
+    }
+
 }
 
 export default ServicesApi
