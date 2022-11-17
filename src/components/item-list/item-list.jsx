@@ -22,8 +22,11 @@ class ItemList extends Component {
 
     renderItems(peopleList) {
         return peopleList.map(({id, name}) => {
-            return (<li className='list-group-item'
-                        key={id}>
+            return (
+                <li className='list-group-item'
+                        key={id}
+                    onClick={() => this.props.onItemSelected(id)}
+                >
                 {name}
             </li>);
         })

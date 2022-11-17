@@ -6,14 +6,14 @@ class ServicesApi {
         const response = await fetch(`${this._apiBasePath}${url}`)
 
         if (!response.ok) {
-            throw new Error('No Connected: Status response ${response.status}')
+            throw new Error(`No Connected: Status response ${response.status}`)
         }
 
         return await response.json()
     }
 
     async getAllPlanets() {
-        const response = await this.getResource('/planets/')
+        const response = await this.getResource(`/planets/`)
         return await response.results
     }
 
@@ -24,23 +24,27 @@ class ServicesApi {
     }
 
     async getAllPeoples() {
-        const response = await this.getResource('/people/')
+        const response = await this.getResource(`/people/`)
         return await response.results.map(this._transformPersonData)
     }
 
     async getPeople(id) {
-        const response = await this.getResource('/people/${id}')
+        const response = await this.getResource(`/people/${id}`)
         return await response
     }
 
+    async getPerson(id) {
+        const response = await this.getResource(`/people/${id}`)
+        return this._transformPersonData(response)
+    }
+
     async getAllStarships() {
-        const response = await this.getResource('/starships/')
+        const response = await this.getResource(`/starships/`)
         return await response.results
     }
 
     async getStarship(id) {
-        const response = await this.getResource('/starships/${id}')
-        console.log(response)
+        const response = await this.getResource(`/starships/${id}`)
         return await response
     }
 
